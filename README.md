@@ -1,44 +1,155 @@
 # AeroSpaceGuard
 
-> An AI-assisted aerospace software project for analysing space weather, atmospheric conditions, orbital debris and flight-path optimisation.
+> AI-assisted aerospace software for space-weather, atmospheric and orbital-debris analysis with flight-path optimisation and route visualisation.
 
 ## Overview
 
-AeroSpaceGuard is a Python-based aerospace project that combines multiple data-processing pipelines to support aviation and aerospace analysis.
+AeroSpaceGuard is a Python-based aerospace software project that integrates multiple data-processing pipelines with machine-learning and flight-path optimisation components.
 
-The project brings together space-weather data, atmospheric information and orbital-debris data, with additional components for turbulence prediction and flight-path optimisation.
+The project combines space-weather, atmospheric and orbital-debris data to create an integrated dataset and risk-analysis workflow. It also includes a Random Forest turbulence classification model and an A* flight-path optimisation system operating on a simplified 3D flight network.
 
 The project was developed as part of the NASA Space Apps Challenge.
 
-## Features
+---
 
-- **Space Weather Analysis** — Processes space-weather information and considers potential impacts on aviation.
-- **Atmospheric Data Pipeline** — Processes atmospheric conditions relevant to flight-path analysis.
-- **Orbital Debris Pipeline** — Incorporates orbital-debris information for aerospace situational awareness.
-- **Turbulence Prediction** — Uses machine-learning concepts to analyse and predict turbulence conditions.
-- **Flight-Path Optimisation** — Generates optimised routes using the processed data.
-- **Route Visualisation** — Includes interactive HTML visualisations for selected international routes.
+## Key Features
 
-## System Components
+### 🌌 Space Weather Analysis
 
-The project is organised around several Python components:
+Processes space-weather information from multiple data sources to support aerospace and aviation analysis.
+
+Supported sources include:
+
+- DSCOVR RTSW
+- ACE
+
+---
+
+### 🌍 Atmospheric Data Processing
+
+Processes atmospheric datasets used as part of the project's flight and risk-analysis workflow.
+
+Supported sources include:
+
+- GEOS-5 FP
+- MERRA-2
+
+---
+
+### 🛰️ Orbital Debris Analysis
+
+Integrates orbital-debris data into the project's aerospace situational-awareness and risk-analysis pipeline.
+
+Supported source:
+
+- ORDEM 3.0
+
+---
+
+### 🤖 Turbulence Machine Learning
+
+Includes a machine-learning pipeline for turbulence classification using a scikit-learn Random Forest model.
+
+The model uses engineered features derived from:
+
+- Wind speed
+- Turbulence-related measurements
+- Ozone
+- Temperature
+- Humidity
+- Time-based features
+
+The pipeline also includes:
+
+- Feature engineering
+- Feature selection
+- Data scaling
+- Train/test splitting
+- Model evaluation
+- Feature importance analysis
+- Model saving and loading
+
+---
+
+### ✈️ Flight-Path Optimisation
+
+Uses A* pathfinding over a simplified 3D flight network.
+
+The optimisation system:
+
+- Generates 3D flight waypoints
+- Uses multiple altitude layers
+- Builds a NetworkX graph
+- Calculates route distances using geodesic calculations
+- Incorporates risk, fuel and travel-time factors into route costs
+- Produces route metrics for analysis
+
+The current implementation uses three altitude layers across approximately 9–13 km.
+
+---
+
+### 🗺️ Route Visualisation
+
+Generates interactive HTML maps using Folium.
+
+Example routes included in the repository:
+
+- JFK → DXB
+- LAX → LHR
+- SIN → SYD
+
+The visualisations provide a way to inspect direct and optimised routes geographically.
+
+---
+
+### 📊 Integrated NASA Data Pipeline
+
+The main data pipeline coordinates the individual data-processing components and combines their outputs into an integrated dataset.
+
+The pipeline:
+
+1. Executes the space-weather pipeline
+2. Executes the atmospheric pipeline
+3. Executes the orbital-debris pipeline
+4. Integrates the resulting datasets
+5. Creates a master timestamp timeline
+6. Calculates a combined risk score
+7. Generates data statistics
+8. Performs data-quality analysis
+9. Generates a comprehensive JSON report
+10. Saves integrated data as CSV
+
+---
+
+## System Architecture
 
 ```text
-AeroSpaceGuard/
-│
-├── AeroSpaceGuard.py
-├── main_pipeline.py
-├── main_ai_ml_system.py
-│
-├── space_weather_pipeline.py
-├── atmospheric_pipeline.py
-├── orbital_debris_pipeline.py
-├── turbulence_prediction.py
-├── flight_optimization.py
-│
-├── optimized_route_JFK_DXB.html
-├── optimized_route_LAX_LHR.html
-├── optimized_route_SIN_SYD.html
-│
-├── Report for AeroSpaceGuard.pdf
-└── README.md
+                         AeroSpaceGuard
+                                │
+                 ┌──────────────┴──────────────┐
+                 │                             │
+          NASA Data Pipeline              AI / Optimisation
+                 │                             │
+       ┌─────────┼─────────┐          ┌────────┴────────┐
+       │         │         │          │                 │
+       ▼         ▼         ▼          ▼                 ▼
+   Space      Atmospheric Orbital  Turbulence      Flight Path
+   Weather       Data      Debris   Prediction     Optimisation
+       │         │         │          │                 │
+       │         │         │      Random Forest         │
+       │         │         │          │              A* / NetworkX
+       └─────────┼─────────┘          │                 │
+                 ▼                    └────────┬────────┘
+          Data Integration                     │
+                 │                             │
+                 └──────────────┬──────────────┘
+                                ▼
+                         Route Analysis
+                                │
+                    ┌───────────┴───────────┐
+                    ▼                       ▼
+               Route Metrics          Visualisation
+                    │                       │
+                    ▼                       ▼
+               Risk / Fuel /          Interactive
+                Time Analysis          HTML Maps
