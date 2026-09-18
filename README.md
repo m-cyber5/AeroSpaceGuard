@@ -1,112 +1,44 @@
 # AeroSpaceGuard
 
-**AeroSpaceGuard** is an AI-powered aerospace tool that integrates real-time space weather, atmospheric data, and orbital debris tracking with advanced flight path optimization. It enhances safety, fuel efficiency, and turbulence prediction by leveraging intelligent insights from global datasets.
+> An AI-assisted aerospace software project for analysing space weather, atmospheric conditions, orbital debris and flight-path optimisation.
 
----
+## Overview
+
+AeroSpaceGuard is a Python-based aerospace project that combines multiple data-processing pipelines to support aviation and aerospace analysis.
+
+The project brings together space-weather data, atmospheric information and orbital-debris data, with additional components for turbulence prediction and flight-path optimisation.
+
+The project was developed as part of the NASA Space Apps Challenge.
 
 ## Features
 
-* **AI Flight Path Optimization**
-  Adjusts routes for maximum fuel efficiency and reduced flight risks.
+- **Space Weather Analysis** — Processes space-weather information and considers potential impacts on aviation.
+- **Atmospheric Data Pipeline** — Processes atmospheric conditions relevant to flight-path analysis.
+- **Orbital Debris Pipeline** — Incorporates orbital-debris information for aerospace situational awareness.
+- **Turbulence Prediction** — Uses machine-learning concepts to analyse and predict turbulence conditions.
+- **Flight-Path Optimisation** — Generates optimised routes using the processed data.
+- **Route Visualisation** — Includes interactive HTML visualisations for selected international routes.
 
-* **Space Weather Awareness**
-  Monitors solar activity, geomagnetic storms, and other space weather impacts.
+## System Components
 
-* **Turbulence Prediction**
-  Uses ML models to forecast turbulence zones for safer flights.
+The project is organised around several Python components:
 
-* **Orbital Debris Pipeline**
-  Tracks debris threats in near-Earth space to enhance situational awareness.
-
-* **Data-Driven Decision Making**
-  Integrates multiple sources into one pipeline for reliability and efficiency.
-
----
-
-## System Architecture
-
-1. **Data Pipelines**
-
-   * Space Weather Pipeline
-   * Atmospheric Data Pipeline
-   * Orbital Debris Pipeline
-
-2. **AI/ML Optimization Layer**
-
-   * Turbulence prediction
-   * Flight path optimization
-   * Space weather modeling
-
-3. **Backend Core**
-
-   * Python-based system for data ingestion, processing, and model execution
-
----
-
-## Project Structure
-
-```
+```text
 AeroSpaceGuard/
 │
-├── back_end.py                # Main backend entry point
-├── main_pipeline.py            # Data pipeline integration
-├── main_ai_ml_system.py        # AI/ML optimization system
+├── AeroSpaceGuard.py
+├── main_pipeline.py
+├── main_ai_ml_system.py
 │
-├── turbulence_prediction.py    # Turbulence predictor
-├── flight_optimization.py      # Flight path optimizer
-├── orbital_debris.py           # Orbital debris tracking
+├── space_weather_pipeline.py
+├── atmospheric_pipeline.py
+├── orbital_debris_pipeline.py
+├── turbulence_prediction.py
+├── flight_optimization.py
 │
-├── docs/                       # Documentation & reports
-
-```
-
----
-
-## Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/m-cyber5/AeroSpaceGuard.git
-   cd AeroSpaceGuard
-   ```
-
-2. Create a virtual environment & install dependencies:
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Mac/Linux
-   venv\Scripts\activate     # Windows
-
-   pip install -r requirements.txt
-   ```
-
-3. Run the backend system:
-
-   ```bash
-   python back_end.py
-   ```
-
----
-
-## Data Sources
-
-* **NASA Space Weather APIs**
-* **NOAA Atmospheric Data**
-* **Orbital Debris Catalogs (NASA, ESA)**
-
----
-
-## Use Cases
-
-* **Commercial Aviation** – Safer and more efficient flight routing
-* **Aerospace Research** – Analysis of atmospheric and space weather impact
-* **Space Operations** – Awareness of orbital debris threats
-
-
-
----
-
-## 🛡️ Vision
-
-AeroSpaceGuard combines AI, atmospheric science, and orbital intelligence to advance aerospace safety—building a future of smarter, greener, and safer skies.
+├── optimized_route_JFK_DXB.html
+├── optimized_route_LAX_LHR.html
+├── optimized_route_SIN_SYD.html
+│
+├── Report for AeroSpaceGuard.pdf
+└── README.md
